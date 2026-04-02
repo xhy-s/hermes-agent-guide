@@ -7,9 +7,9 @@
 | 文件 | 入口命令 | 功能 |
 |------|---------|------|
 | `run_agent.py` | `hermes-agent` | AIAgent 核心类 |
-| `cli.py` | - | CLI 编排器 |
+| `cli.py` | - | CLI 编排器（被 hermes_cli/main.py 调用） |
 | `hermes_cli/main.py` | `hermes` | CLI 主入口 |
-| `gateway/run.py` | `hermes gateway` | 网关主循环 |
+| `gateway/run.py` | `python -m gateway.run` | 网关主循环 |
 | `acp_adapter/entry.py` | `hermes-acp` | ACP 服务器 |
 | `cron/scheduler.py` | `hermes cron` | 定时任务调度 |
 
@@ -27,12 +27,13 @@
 | 文件 | 工具数 | 关键工具 |
 |------|--------|---------|
 | `tools/registry.py` | 核心 | `ToolRegistry` |
-| `tools/file_tools.py` | 6+ | `Read`, `Write`, `Edit` |
-| `tools/terminal_tool.py` | 5+ | `Bash`, `InteractiveBash` |
-| `tools/web_tools.py` | 3+ | `WebSearch`, `WebExtract` |
-| `tools/browser_tool.py` | 8+ | `BrowserNavigate`, `BrowserClick` |
+| `tools/file_tools.py` | 4 | `read_file_tool`, `write_file_tool`, `patch_tool`, `search_tool` |
+| `tools/terminal_tool.py` | 1 | `terminal_tool` |
+| `tools/web_tools.py` | 3 | `web_search_tool`, `web_extract_tool`, `web_crawl_tool` |
+| `tools/browser_tool.py` | 8+ | `browser_navigate`, `browser_click`, `browser_snapshot`, `browser_vision` |
 | `tools/mcp_tool.py` | 动态 | `MCPClient` |
-| `tools/delegate_tool.py` | 2+ | `delegate_task_handler` |
+| `tools/delegate_tool.py` | 1 | `delegate_task` |
+| `tools/skills_tool.py` | 2 | `skills_list`, `skill_view` |
 
 ### CLI 系统
 

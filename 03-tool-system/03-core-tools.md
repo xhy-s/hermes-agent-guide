@@ -25,12 +25,10 @@ Hermes 内置 30+ 工具，分为以下类别：
 
 | 工具名 | 功能 | 签名 |
 |--------|------|------|
-| `Read` | 读取文件内容 | `(path: str) -> str` |
-| `Write` | 写入文件 | `(path: str, content: str) -> str` |
-| `Edit` | 编辑文件 | `(path: str, old_string: str, new_string: str) -> str` |
-| `Glob` | 文件模式匹配 | `(pattern: str) -> List[str]` |
-| `Grep` | 文本搜索 | `(pattern: str, path: str) -> List[str]` |
-| `Patch` | 应用补丁 | `(path: str, patch: str) -> str` |
+| `Read` | 读取文件内容 | `read_file_tool(path: str) -> str` |
+| `Write` | 写入文件 | `write_file_tool(path: str, content: str) -> str` |
+| `Edit` | 编辑文件 | `patch_tool(path: str, old_string: str, new_string: str) -> str` |
+| `Search` | 搜索文件 | `search_tool(pattern: str, path?: str) -> List[str]` |
 
 ### 3.2.2 核心处理器
 
@@ -82,10 +80,8 @@ def write_file_handler(path: str, content: str) -> str:
 
 | 工具名 | 功能 | 签名 |
 |--------|------|------|
-| `Bash` | 执行 Shell 命令 | `(command: str, timeout?: int) -> str` |
-| `InteractiveBash` | 交互式 Shell | `(command: str) -> str` |
-| `BackgroundProcess` | 后台进程管理 | `(action: str, pid?: str) -> str` |
-| `ProcessList` | 列出进程 | `() -> str` |
+| `terminal_tool` | 执行 Shell 命令 | `terminal_tool(command: str, timeout?: int) -> str` |
+| `execute_code` | 代码执行沙箱 | `execute_code(code: str, language: str) -> str` |
 
 ### 3.3.2 Bash 执行器
 
@@ -161,9 +157,9 @@ async def async_bash_handler(command: str, timeout: int = 30) -> str:
 
 | 工具名 | 功能 | 签名 |
 |--------|------|------|
-| `WebSearch` | 网络搜索 | `(query: str, num_results?: int) -> str` |
-| `WebExtract` | 提取网页内容 | `(url: str, query?: str) -> str` |
-| `WebFetch` | 获取页面 | `(url: str) -> str` |
+| `WebSearch` | 网络搜索 | `web_search_tool(query: str, num_results?: int) -> str` |
+| `WebExtract` | 提取网页内容 | `web_extract_tool(url: str, query?: str) -> str` |
+| `WebCrawl` | 爬取网页 | `web_crawl_tool(url: str) -> str` |
 
 ### 3.4.2 搜索处理
 
@@ -212,12 +208,11 @@ def _tavily_search(query: str, num_results: int, api_key: str) -> str:
 
 | 工具名 | 功能 | 签名 |
 |--------|------|------|
-| `BrowserNavigate` | 导航到 URL | `(url: str) -> str` |
-| `BrowserClick` | 点击元素 | `(selector: str) -> str` |
-| `BrowserType` | 输入文本 | `(selector: str, text: str) -> str` |
-| `BrowserScreenshot` | 截图 | `(full_page?: bool) -> str` |
-| `BrowserWait` | 等待元素 | `(selector: str, timeout?: int) -> str` |
-| `BrowserEvaluate` | 执行 JS | `(script: str) -> str` |
+| `browser_navigate` | 导航到 URL | `browser_navigate(url: str) -> str` |
+| `browser_click` | 点击元素 | `browser_click(selector: str) -> str` |
+| `browser_type` | 输入文本 | `browser_type(selector: str, text: str) -> str` |
+| `browser_snapshot` | 页面快照 | `browser_snapshot() -> str` |
+| `browser_vision` | 视觉分析 | `browser_vision() -> str` |
 
 ### 3.5.2 浏览器提供者
 
